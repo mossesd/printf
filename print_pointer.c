@@ -1,31 +1,16 @@
 #include "main.h"
 
 /**
- * printf_pointer - prints an hexgecimal number.
- * @val: arguments.
- * Return: counter.
+ * print_pointer - prints a pointer
+ * @p: pointer to be printed
+ *
+ * Return: number of characters printed
  */
-int printf_pointer(va_list val)
+int print_pointer(void *p)
 {
-	void *p;
-	char *s = "(nil)";
-	long int a;
-	int b;
-	int i;
+	int chars_printed = 0;
 
-	p = va_arg(val, void*);
-	if (p == NULL)
-	{
-		for (i = 0; s[i] != '\0'; i++)
-		{
-			_putchar(s[i]);
-		}
-		return (i);
-	}
-
-	a = (unsigned long int)p;
-	_putchar('0');
-	_putchar('x');
-	b = printf_hex_aux(a);
-	return (b + 2);
+	chars_printed += print_string("0x");
+	chars_printed += print_odh('x', (unsigned long int)p);
+	return (chars_printed);
 }
